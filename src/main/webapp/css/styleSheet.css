@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+li {
+    display: inline;
+    font-size: medium;
+    font-family: 'Montserrat', sans-serif;
+}
+#navbar {
+    background-color: cadetblue;
+}
