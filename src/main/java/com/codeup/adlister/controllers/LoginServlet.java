@@ -1,4 +1,7 @@
 package com.codeup.adlister.controllers;
+import com.codeup.adlister.dao.MySQLUsersDao;
+import com.codeup.adlister.util.Password;
+import org.mindrot.jbcrypt.BCrypt;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
@@ -30,9 +33,10 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        boolean validAttempt = password.equals(user.getPassword());
+        String hash = user.getPassword();
+        boolean passwordsDoMatch = Password.check(password, hash);
 
-        if (validAttempt) {
+        if (passwordsDoMatch) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         } else {
